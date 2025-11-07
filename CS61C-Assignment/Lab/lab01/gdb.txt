@@ -1,0 +1,9 @@
+1. run 
+2. b 
+3. n 
+4. n
+5. c
+6. p
+7. display
+8. info locals
+9. q
