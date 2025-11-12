@@ -1,0 +1,38 @@
+The selection of n and block_size is important. A big n is essential and the block size should be 
+a proper value, not too big or small. After some experiment, I find when n is meidate and the BLOCK_SIZE
+is 1/5 of n, and when n is big and the BLOCK_SIZE is 1/10 of n, the blocking is more effective.
+
+It should be noted that this program is compiled with O3 optimization level, or the overhead of blocking
+could decrease the performance.
+
+n=2000, BLOCK_SIZE=400
+	no_block=7.934 GFlops
+	do_block=11.756 GFlops
+
+n=3000, BLOCK_SIZE=600
+	no_block=7.261 GFlops
+	do_block=12.163 GFlops
+
+n=4000, BLOCK_SIZE=800
+	no_block=7.029 GFlops
+	do_block=12.405 GFlops
+
+n=5000, BLOCK_SIZE=500
+	no_block=6.891 GFlops
+	do_block=11.477 GFlops
+
+n=6000, BLOCK_SIZE=600
+	no_block=6.944 GFlops
+	do_block=12.097 GFlops
+
+n=7000, BLOCK_SIZE=700
+	no_block=6.940 GFlops
+	do_block=12.029 GFlops
+
+n=8000, BLOCK_SIZE=1000
+	no_block=6.949 GFlops
+	do_block=11.584 GFlops
+
+n=8000, BLOCK_SIZE=800
+	no_block=6.957 GFlops
+	do_block=12.195 GFlops
