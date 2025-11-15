@@ -6,9 +6,10 @@ char *report = "report.txt";
 int main(int argc, char **argv) {
    signal(SIGINT, signal_callback_handler);
 
-// default configs
-   server_port = 8000;
-   server_files_directory = "./files/";
+	// default config
+	int server_fd = 0;
+	int server_port = 8000;
+	char* server_files_directory = "./files/";
 
   int i;
   for (i = 1; i < argc; i++) {

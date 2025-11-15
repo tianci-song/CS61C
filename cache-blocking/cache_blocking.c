@@ -67,50 +67,14 @@ void dgemm_do_block(float* A, float* B, float* C, int N, int BLOCK_SIZE) {
     for (int i = 0; i < N; i += BLOCK_SIZE) {
         for (int j = 0; j < N; j += BLOCK_SIZE) {
             for (int k = 0; k < N; k += BLOCK_SIZE) {
-                //do_block(A, B, C, N, i, j, k);
-		    for (int sk = k; sk < k + BLOCK_SIZE; ++sk) {
-			for (int sj = j; sj < j + BLOCK_SIZE; ++sj) {
-			    for (int si = i; si < i + BLOCK_SIZE; ++si) {
-				C[si + N*sj] += A[si + N*sk] * B[sk + N*sj];
-			    }
-			}
-		    }
+                do_block(A, B, C, N, BLOCK_SIZE, i, j, k);
             }
         }
     }
 }
-
-/*
-void dgemm_no_block(float* A, float* B, float* C, int N) {
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < N; ++j) {
-            for (int k = 0; k < N; ++k) {
-                C[i + N*j] += A[i + N*k] * B[k + N*j];
-            }
-        }
-    }
-}
-
-void dgemm_do_block(float* A, float* B, float* C, int N) {
-    for (int i = 0; i < N; i += BLOCK_SIZE) {
-        for (int j = 0; j < N; j += BLOCK_SIZE) {
-            for (int k = 0; k < N; k += BLOCK_SIZE) {
-                //do_block(A, B, C, N, i, j, k);
-		    for (int si = i; si < i + BLOCK_SIZE; ++si) {
-			for (int sj = j; sj < j + BLOCK_SIZE; ++sj) {
-			    for (int sk = k; sk < k + BLOCK_SIZE; ++sk) {
-				C[si + N*sj] += A[si + N*sk] * B[sk + N*sj];
-			    }
-			}
-		    }
-            }
-        }
-    }
-}
-*/
 
 void dgemm_do_block_omp(float* A, float* B, float* C, int N, int BLOCK_SIZE) {
-#pragma omp parallel for
+	#pragma omp parallel for
     for (int i = 0; i < N; i += BLOCK_SIZE) {
         for (int j = 0; j < N; j += BLOCK_SIZE) {
             for (int k = 0; k < N; k += BLOCK_SIZE) {
